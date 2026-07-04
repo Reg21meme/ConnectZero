@@ -1,2 +1,2 @@
-# kubezero-connect4
+# ConnectZero
 reinforcement-learning, alphazero, self-play, mcts, distributed-training, kubernetes, ray, kuberay, pytorch, mlops
