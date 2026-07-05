@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "connectzero"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = [
+    "ray[default]==2.56.0",
+    "mlflow>=3.9.0",
+    "prometheus-client>=0.20.0",
+    "gymnasium>=1.0.0",
+    "pettingzoo==1.25.0",
+    "numpy>=1.26.0",
+    "django>=5.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
