@@ -59,10 +59,6 @@ class ResidualBlock(nn.Module):
 class ConnectZeroNet(nn.Module):
     """
     Shared trunk + two heads.
-
-    Args:
-        num_res_blocks: number of residual blocks in the trunk (default 4)
-        channels: number of conv filters (default 64)
     """
 
     def __init__(self, num_res_blocks=4, channels=64):
@@ -120,11 +116,6 @@ class ConnectZeroNet(nn.Module):
     def predict(self, board, current_player, legal_moves, device="cpu"):
         """
         Convenience method for single-board inference during MCTS.
-
-        Returns:
-            policy: np.array of shape (7,) — probabilities over columns,
-                    illegal moves zeroed and renormalized
-            value:  float in (-1, 1)
         """
         self.eval()
         with torch.no_grad():

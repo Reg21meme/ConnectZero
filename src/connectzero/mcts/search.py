@@ -20,15 +20,6 @@ class MCTS:
     def search(self, game):
         """
         Run MCTS from the current game state.
-
-        Args:
-            game: Connect4 instance (will not be modified)
-
-        Returns:
-            policy: np.array of shape (7,) — visit count distribution
-                    over columns, normalised to sum to 1.
-                    This is the training target for the policy head.
-            action: int — column with the highest visit count (best move)
         """
         root = MCTSNode(game=game.copy())
 
