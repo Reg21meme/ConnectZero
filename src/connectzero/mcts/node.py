@@ -55,7 +55,7 @@ class MCTSNode:
         """
         parent_N = self.parent.N if self.parent else 1
         exploration = c_puct * self.prior * math.sqrt(parent_N) / (1 + self.N)
-        return self.Q + exploration
+        return -self.Q + exploration
 
     def best_child(self, c_puct=1.5):
         """Return the child with the highest PUCT score."""
