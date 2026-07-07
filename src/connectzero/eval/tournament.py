@@ -1,4 +1,5 @@
 import numpy as np
+import random
 from connectzero.env.connect4 import Connect4
 from connectzero.env.baselines import RandomAgent, HeuristicAgent
 from connectzero.mcts.search import MCTS
@@ -19,18 +20,21 @@ class NetworkAgent:
         self._game = game
 
 
-def play_match(agent1, agent2, num_games=100, render=False):
+def play_match(agent1, agent2, num_games=100, seed=None):
     """
     Play num_games between agent1 (P1) and agent2 (P2).
     Alternates who goes first every game.
     Returns win/loss/draw counts from agent1's perspective.
     """
+    if seed is not None:
+        random.seed(seed)
+        np.random.seed(seed)
+
     wins, losses, draws = 0, 0, 0
 
     for i in range(num_games):
         game = Connect4()
 
-        # Alternate who goes first
         if i % 2 == 0:
             agents = {1: agent1, 2: agent2}
             agent1_player = 1
@@ -41,11 +45,8 @@ def play_match(agent1, agent2, num_games=100, render=False):
         while not game.done:
             current = game.current_player
             agent = agents[current]
-
-            # Give NetworkAgent access to full game state
             if hasattr(agent, "set_game"):
                 agent.set_game(game)
-
             col = agent.select_move(game.board, game.legal_moves(), current)
             game.step(col)
 
@@ -61,19 +62,33 @@ def play_match(agent1, agent2, num_games=100, render=False):
     return {"wins": wins, "losses": losses, "draws": draws, "win_rate": win_rate}
 
 
+def round_robin(agents, names, num_games=50, seed=42):
+    """
+    Play every agent against every other agent.
+    Returns results dict: {(name_a, name_b): match_result}
+    """
+    results = {}
+    for i in range(len(agents)):
+        for j in range(len(agents)):
+            if i == j:
+                continue
+            result = play_match(agents[i], agents[j], num_games=num_games, seed=seed)
+            results[(names[i], names[j])] = result
+            print(f"  {names[i]} vs {names[j]}: W{result['wins']} L{result['losses']} D{result['draws']} ({result['win_rate']:.1%})")
+    return results
+
+
 def evaluate_vs_random(network, num_games=100, num_simulations=50, device="cpu"):
-    """Quick evaluation: network agent vs random agent."""
     net_agent = NetworkAgent(network, num_simulations=num_simulations, device=device)
     rand_agent = RandomAgent()
-    results = play_match(net_agent, rand_agent, num_games=num_games)
-    print(f"vs Random  | W:{results['wins']} L:{results['losses']} D:{results['draws']} | Win rate: {results['win_rate']:.1%}")
+    results = play_match(net_agent, rand_agent, num_games=num_games, seed=42)
+    print(f"vs Random    | W:{results['wins']} L:{results['losses']} D:{results['draws']} | Win rate: {results['win_rate']:.1%}")
     return results
 
 
 def evaluate_vs_heuristic(network, num_games=100, num_simulations=50, device="cpu"):
-    """Quick evaluation: network agent vs heuristic agent."""
     net_agent = NetworkAgent(network, num_simulations=num_simulations, device=device)
     heur_agent = HeuristicAgent()
-    results = play_match(net_agent, heur_agent, num_games=num_games)
+    results = play_match(net_agent, heur_agent, num_games=num_games, seed=42)
     print(f"vs Heuristic | W:{results['wins']} L:{results['losses']} D:{results['draws']} | Win rate: {results['win_rate']:.1%}")
     return results
