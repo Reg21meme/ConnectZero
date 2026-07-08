@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ConnectZero Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body { font-family: monospace; background: #1a1a2e; color: #eee; padding: 2rem; }
+        h1 { color: #e94560; }
+        .stats { display: flex; gap: 2rem; margin: 1rem 0; }
+        .stat-box { background: #16213e; padding: 1rem 2rem; border-radius: 8px; }
+        .stat-box h3 { margin: 0; color: #0f3460; color: #e94560; }
+        .stat-box p { font-size: 2rem; margin: 0.5rem 0 0; }
+        canvas { background: #16213e; border-radius: 8px; padding: 1rem; margin-top: 2rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 2rem; }
+        th, td { padding: 0.5rem 1rem; text-align: left; border-bottom: 1px solid #0f3460; }
+        th { color: #e94560; }
+    </style>
+</head>
+<body>
+    <h1>ConnectZero Training Dashboard</h1>
+
+    <div class="stats">
+        <div class="stat-box">
+            <h3>Total Checkpoints</h3>
+            <p>{{ num_checkpoints }}</p>
+        </div>
+        <div class="stat-box">
+            <h3>Latest Checkpoint</h3>
+            <p>{{ latest }}</p>
+        </div>
+    </div>
+
+    <canvas id="eloChart" width="800" height="300"></canvas>
+
+    <script>
+        fetch('/api/elo/')
+            .then(r => r.json())
+            .then(data => {
+                const labels = data.elo_history.map(d => 'Gen ' + d.generation);
+                const values = data.elo_history.map(d => d.elo);
+                new Chart(document.getElementById('eloChart'), {
+                    type: 'line',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Elo Rating',
+                            data: values,
+                            borderColor: '#e94560',
+                            backgroundColor: 'rgba(233,69,96,0.1)',
+                            tension: 0.3,
+                            fill: true,
+                        }]
+                    },
+                    options: {
+                        plugins: { legend: { labels: { color: '#eee' } } },
+                        scales: {
+                            x: { ticks: { color: '#eee' }, grid: { color: '#0f3460' } },
+                            y: { ticks: { color: '#eee' }, grid: { color: '#0f3460' } }
+                        }
+                    }
+                });
+            });
+    </script>
+
+    <h2>Checkpoint History</h2>
+    <table id="checkpointTable">
+        <thead><tr><th>Generation</th><th>Filename</th></tr></thead>
+        <tbody></tbody>
+    </table>
+
+    <script>
+        fetch('/api/checkpoints/')
+            .then(r => r.json())
+            .then(data => {
+                const tbody = document.querySelector('#checkpointTable tbody');
+                data.checkpoints.slice(-10).reverse().forEach(c => {
+                    tbody.innerHTML += `<tr><td>${c.generation}</td><td>${c.filename}</td></tr>`;
+                });
+            });
+    </script>
+</body>
+</html>

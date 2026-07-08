@@ -1,0 +1,11 @@
+Defaulting to user installation because normal site-packages is not writeable
+Collecting django
+  Downloading django-6.0.7-py3-none-any.whl.metadata (3.9 kB)
+Collecting asgiref>=3.9.1 (from django)
+  Using cached asgiref-3.11.1-py3-none-any.whl.metadata (9.3 kB)
+Requirement already satisfied: sqlparse>=0.5.0 in /home/reg/.local/lib/python3.12/site-packages (from django) (0.5.5)
+Downloading django-6.0.7-py3-none-any.whl (8.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.4/8.4 MB 53.0 MB/s eta 0:00:00
+Using cached asgiref-3.11.1-py3-none-any.whl (24 kB)
+Installing collected packages: asgiref, django
+Successfully installed asgiref-3.11.1 django-6.0.7
