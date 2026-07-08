@@ -15,10 +15,10 @@ An AlphaZero-style self-play system that trains a Connect Four agent from scratc
 
 | Metric | Value |
 |---|---|
-| Training generations | 425 |
-| Final Elo | 1589.7 |
-| Random baseline Elo | 376.7 |
-| Elo improvement | +1213 points |
+| Training generations | 631 |
+| Final Elo | 1523.6 |
+| Random baseline Elo | 344.8 |
+| Elo improvement | +1178 points |
 | Win rate vs random | 100% (100/100 games) |
 | Win rate vs heuristic | 100% (100/100 games) |
 | Win rate vs minimax-depth-2 | 100% (100/100 games) |

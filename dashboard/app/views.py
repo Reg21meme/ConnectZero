@@ -37,10 +37,11 @@ def api_checkpoints(request):
 def api_elo(request):
     # Return hardcoded Elo data for now — Week 6 Session 4 will make this dynamic
     data = [
-        {"generation": 0, "elo": 376.7},
-        {"generation": 99, "elo": 800.0},
-        {"generation": 199, "elo": 1100.0},
-        {"generation": 299, "elo": 1300.0},
-        {"generation": 399, "elo": 1589.7},
-    ]
+    {"generation": 0, "elo": 344.8},
+    {"generation": 126, "elo": 953.9},
+    {"generation": 252, "elo": 1087.9},
+    {"generation": 378, "elo": 1247.9},
+    {"generation": 504, "elo": 1008.5},
+    {"generation": 631, "elo": 1523.6},
+]
     return JsonResponse({"elo_history": data})
