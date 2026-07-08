@@ -5,68 +5,63 @@
 </marker>
 </defs>
 
-<!-- Row 1 -->
 <rect x="40" y="40" width="180" height="56" rx="8" fill="#1D9E75" fill-opacity="0.15" stroke="#1D9E75" stroke-width="0.5"/>
-<text x="130" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">Self-play workers</text>
-<text x="130" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">Ray actors × N</text>
+<text x="130" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Self-play workers</text>
+<text x="130" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">Ray actors × N</text>
 
 <rect x="250" y="40" width="180" height="56" rx="8" fill="#1D9E75" fill-opacity="0.15" stroke="#1D9E75" stroke-width="0.5"/>
-<text x="340" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">Replay buffer</text>
-<text x="340" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">50k examples</text>
+<text x="340" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Replay buffer</text>
+<text x="340" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">50k examples</text>
 
 <rect x="460" y="40" width="180" height="56" rx="8" fill="#1D9E75" fill-opacity="0.15" stroke="#1D9E75" stroke-width="0.5"/>
-<text x="550" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#085041">Learner</text>
-<text x="550" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0F6E56">PyTorch training</text>
+<text x="550" y="62" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Learner</text>
+<text x="550" y="80" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">PyTorch training</text>
 
 <line x1="220" y1="68" x2="248" y2="68" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="430" y1="68" x2="458" y2="68" stroke="#1D9E75" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-<!-- Row 2: Checkpoint registry -->
 <rect x="200" y="160" width="280" height="56" rx="8" fill="#7F77DD" fill-opacity="0.15" stroke="#7F77DD" stroke-width="0.5"/>
-<text x="340" y="182" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#26215C">Checkpoint registry</text>
-<text x="340" y="200" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#3C3489">MLflow artifacts + metadata</text>
+<text x="340" y="182" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Checkpoint registry</text>
+<text x="340" y="200" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">MLflow artifacts + metadata</text>
 
 <path d="M550 96 L550 138 L340 138 L340 158" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 <path d="M200 188 L130 188 L130 98" fill="none" stroke="#888780" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
-<text x="80" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5F5E5A">latest model</text>
+<text x="80" y="178" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">latest model</text>
 
-<!-- Row 3: Evaluator + Promotion gate -->
 <rect x="80" y="280" width="180" height="56" rx="8" fill="#D85A30" fill-opacity="0.15" stroke="#D85A30" stroke-width="0.5"/>
-<text x="170" y="302" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Evaluator</text>
-<text x="170" y="320" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">200-game tournament</text>
+<text x="170" y="302" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Evaluator</text>
+<text x="170" y="320" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">200-game tournament</text>
 
 <rect x="420" y="280" width="180" height="56" rx="8" fill="#D85A30" fill-opacity="0.15" stroke="#D85A30" stroke-width="0.5"/>
-<text x="510" y="302" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#4A1B0C">Promotion gate</text>
-<text x="510" y="320" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#712B13">&gt;55% win rate</text>
+<text x="510" y="302" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Promotion gate</text>
+<text x="510" y="320" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">&gt;55% win rate</text>
 
 <line x1="260" y1="308" x2="418" y2="308" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="340" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5F5E5A">candidate vs champion</text>
+<text x="340" y="300" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#aaaaaa">candidate vs champion</text>
 
 <path d="M280 216 L170 216 L170 278" fill="none" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
-<path d="M510 278 L510 238 L420 238" fill="none" stroke="#888780" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
-<text x="510" y="256" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5F5E5A">promote</text>
+<path d="M510 280 L510 188 L482 188" fill="none" stroke="#888780" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
+<text x="530" y="240" text-anchor="start" font-family="sans-serif" font-size="11" fill="#aaaaaa">promote</text>
 
-<!-- Row 4: Observability -->
 <rect x="80" y="420" width="160" height="56" rx="8" fill="#378ADD" fill-opacity="0.15" stroke="#378ADD" stroke-width="0.5"/>
-<text x="160" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#042C53">Prometheus</text>
-<text x="160" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">games/sec, loss</text>
+<text x="160" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Prometheus</text>
+<text x="160" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">games/sec, loss</text>
 
 <rect x="260" y="420" width="160" height="56" rx="8" fill="#378ADD" fill-opacity="0.15" stroke="#378ADD" stroke-width="0.5"/>
-<text x="340" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#042C53">Grafana</text>
-<text x="340" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">live charts</text>
+<text x="340" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Grafana</text>
+<text x="340" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">live charts</text>
 
 <rect x="440" y="420" width="180" height="56" rx="8" fill="#378ADD" fill-opacity="0.15" stroke="#378ADD" stroke-width="0.5"/>
-<text x="530" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#042C53">Django dashboard</text>
-<text x="530" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#0C447C">Elo curve + checkpoints</text>
+<text x="530" y="442" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="14" font-weight="500" fill="#ffffff">Django dashboard</text>
+<text x="530" y="460" text-anchor="middle" dominant-baseline="central" font-family="sans-serif" font-size="12" fill="#cccccc">Elo curve + checkpoints</text>
 
 <line x1="160" y1="336" x2="160" y2="418" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="340" y1="216" x2="340" y2="418" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="510" y1="336" x2="530" y2="418" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
 <line x1="240" y1="448" x2="258" y2="448" stroke="#378ADD" stroke-width="1.5" marker-end="url(#arrow)"/>
 
-<!-- Legend -->
 <line x1="40" y1="540" x2="70" y2="540" stroke="#888780" stroke-width="1.5" marker-end="url(#arrow)"/>
-<text x="76" y="544" font-family="sans-serif" font-size="11" fill="#5F5E5A">data flow</text>
+<text x="76" y="544" font-family="sans-serif" font-size="11" fill="#aaaaaa">data flow</text>
 <line x1="160" y1="540" x2="190" y2="540" stroke="#888780" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrow)"/>
-<text x="196" y="544" font-family="sans-serif" font-size="11" fill="#5F5E5A">model weights</text>
+<text x="196" y="544" font-family="sans-serif" font-size="11" fill="#aaaaaa">model weights</text>
 </svg>
