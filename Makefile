@@ -15,3 +15,5 @@ docker-build:
 
 docker-train-small:
 	docker run --rm -v $(PWD)/runs:/app/runs connectzero-train
+quickstart:
+	bash scripts/quickstart.sh
