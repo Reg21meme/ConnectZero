@@ -8,10 +8,10 @@ test:
 	pytest tests/ -v
 
 train-local:
-	python -m connectzero.cli train --config $(CONFIG)
+	python3 -m connectzero.cli train --config $(CONFIG)
 
 docker-build:
 	docker build -f docker/Dockerfile.train -t connectzero-train .
 
 docker-train-small:
-	docker run --rm connectzero-train python -m connectzero.cli train --config configs/local_cpu.yaml
+	docker run --rm -v $(PWD)/runs:/app/runs connectzero-train

@@ -13,10 +13,6 @@ def get_agent(name):
 
 
 def play_game(agent1, agent2, render=True):
-    """
-    Play a full game between agent1 (P1) and agent2 (P2).
-    Returns the winner (1, 2, or None for draw).
-    """
     g = Connect4()
     agents = {1: agent1, 2: agent2}
 
@@ -60,6 +56,17 @@ def cmd_play(args):
     play_game(agent1, agent2, render=True)
 
 
+def cmd_train(args):
+    import yaml
+    from connectzero.train.train_loop import train
+
+    with open(args.config) as f:
+        config = yaml.safe_load(f)
+
+    print(f"Starting training with config: {args.config}")
+    train(**config)
+
+
 def main():
     parser = argparse.ArgumentParser(prog="connectzero")
     subparsers = parser.add_subparsers(dest="command")
@@ -70,13 +77,22 @@ def main():
         type=str,
         default="random",
         choices=["random", "heuristic", "vs"],
-        help="Agent to use: random, heuristic, or vs (random vs heuristic)",
+    )
+
+    train_parser = subparsers.add_parser("train", help="Run training loop")
+    train_parser.add_argument(
+        "--config",
+        type=str,
+        default="configs/local_cpu.yaml",
+        help="Path to training config yaml",
     )
 
     args = parser.parse_args()
 
     if args.command == "play":
         cmd_play(args)
+    elif args.command == "train":
+        cmd_train(args)
     else:
         parser.print_help()
 

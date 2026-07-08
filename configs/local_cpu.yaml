@@ -1,0 +1,9 @@
+num_iterations: 10
+games_per_iteration: 3
+train_steps_per_iteration: 10
+batch_size: 32
+num_simulations: 25
+num_res_blocks: 4
+channels: 64
+checkpoint_dir: runs/checkpoints
+device: cpu
