@@ -26,15 +26,14 @@ An AlphaZero-style self-play system that trains a Connect Four agent from scratc
 | Self-play throughput (2 workers) | 3.08 games/sec |
 | Scaling speedup (1→2 workers) | 2.02x |
 
-## Quickstart: local
+## Quickstart
 
 ```bash
 git clone https://github.com/Reg21meme/ConnectZero.git
 cd ConnectZero
-make install
-make test
-python3 -m connectzero.cli play --agent heuristic
+make quickstart
 ```
+This installs dependencies, runs tests, trains for 20 iterations, and opens the dashboard at http://localhost:8001.
 
 ## Quickstart: Docker
 
