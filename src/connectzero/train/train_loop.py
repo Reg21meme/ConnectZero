@@ -1,6 +1,13 @@
 import os
 import time
 import mlflow
+from connectzero.infra.metrics import (
+    start_metrics_server,
+    record_games,
+    record_buffer_size,
+    record_learner_metrics,
+    record_worker_count,
+)
 from connectzero.model.network import ConnectZeroNet
 from connectzero.model.checkpoint import save_checkpoint, load_checkpoint, get_latest_checkpoint
 from connectzero.selfplay.worker import play_game
@@ -20,6 +27,10 @@ def train(
     device="cpu",
 ):
     os.makedirs(checkpoint_dir, exist_ok=True)
+    try:
+        start_metrics_server(port=8000)
+    except Exception:
+         pass  # already running
     network = ConnectZeroNet(num_res_blocks=num_res_blocks, channels=channels)
     learner = Learner(network, device=device)
     buf = ReplayBuffer(max_size=50000)
@@ -50,13 +61,14 @@ def train(
             iter_start = time.time()
 
             # --- Self-play ---
+            record_worker_count(1)
             print(f"\n[Iter {iteration}] Generating {games_per_iteration} self-play games...")
             total_examples = 0
             for _ in range(games_per_iteration):
                 examples = play_game(network, num_simulations=num_simulations, device=device)
                 buf.add_game(examples)
                 total_examples += len(examples)
-            print(f"  Buffer size: {len(buf)} | New examples: {total_examples}")
+            record_games(games_per_iteration, total_examples, time.time() - iter_start + 0.001)
 
             # --- Train ---
             if not buf.is_ready(batch_size):
@@ -77,7 +89,8 @@ def train(
             avg_loss = total_loss / train_steps_per_iteration
             avg_policy_loss = total_policy_loss / train_steps_per_iteration
             avg_value_loss = total_value_loss / train_steps_per_iteration
-            print(f"  Avg loss: {avg_loss:.4f}")
+            record_learner_metrics(avg_loss, avg_policy_loss, avg_value_loss)
+            record_buffer_size(len(buf))
 
             # Log metrics to MLflow
             mlflow.log_metrics({
